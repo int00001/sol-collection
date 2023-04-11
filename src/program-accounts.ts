@@ -25,7 +25,7 @@ dotenv.config();
  */
 
 const main = async () => {
-  const c = new Connection(process.env.ALCHEMY_HTTPS!);
+  const c = new Connection(process.env.ALCHEMY_SOL_MAIN_HTTPS!);
 
   // get all token accounts for UXD token mint
   // SPL token accounts are 165 bytes in length (dataSize: 165)
