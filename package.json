@@ -8,7 +8,8 @@
     "build": "tsc -p tsconfig.json",
     "gpa": "ts-node -r tsconfig-paths/register build/program-accounts.js",
     "sd": "ts-node -r tsconfig-paths/register build/serialize/run.js",
-    "rtx": "ts-node -r tsconfig-paths/register build/transactions/rebroadcast.js"
+    "rtx": "ts-node -r tsconfig-paths/register build/transactions/rebroadcast.js",
+    "txv": "ts-node -r tsconfig-paths/register build/transactions/versions.js"
   },
   "author": "int",
   "license": "LicenseRef-LICENSE",
