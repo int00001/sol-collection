@@ -3,7 +3,7 @@
 
 import { Buffer } from 'buffer';
 
-import { serialize, deserialize } from 'borsh';
+import { serialize } from 'borsh';
 import {
   Connection,
   Keypair,
@@ -31,7 +31,16 @@ class Assignable {
 class Payload extends Assignable { }
 
 // borsh schema describing the payload
-const payloadSchema = new Map([
+const initPayloadSchema = new Map([
+  [
+    Payload,
+    {
+      kind: 'struct',
+      fields: [['id', 'u8']],
+    },
+  ],
+]);
+const mintPayloadSchema = new Map([
   [
     Payload,
     {
@@ -52,6 +61,41 @@ enum InstructionVariant {
   BurnKeypair,
 }
 
+export const initAcc = async (
+  connection: Connection,
+  programId: PublicKey,
+  account: PublicKey,
+  wallet: Keypair
+) => {
+  const init = new Payload({
+    id: InstructionVariant.InitializeAccount,
+  });
+
+  // serialize
+  const initSerBuf = Buffer.from(serialize(initPayloadSchema, init));
+
+  // ix
+  const ix = new TransactionInstruction({
+    data: initSerBuf,
+    keys: [
+      { pubkey: account, isSigner: false, isWritable: true },
+      { pubkey: wallet.publicKey, isSigner: false, isWritable: false },
+    ],
+    programId,
+  });
+
+  // tx
+  const tx = new Transaction().add(ix);
+
+  // send
+  const txSig = await sendAndConfirmTransaction(connection, tx, [wallet], {
+    commitment: 'singleGossip',
+    preflightCommitment: 'singleGossip',
+  });
+
+  return txSig;
+};
+
 // mint key value pair to an account
 export const mintKV = async (
   connection: Connection,
@@ -69,10 +113,10 @@ export const mintKV = async (
   });
 
   // serialize payload
-  const mintSerBuf = Buffer.from(serialize(payloadSchema, mint));
-  console.log(mintSerBuf);
-  const mintPayloadCopy = deserialize(payloadSchema, Payload, mintSerBuf);
-  console.log(mintPayloadCopy);
+  const mintSerBuf = Buffer.from(serialize(mintPayloadSchema, mint));
+  // console.log(mintSerBuf);
+  // const mintPayloadCopy = deserialize(mintPayloadSchema, Payload, mintSerBuf);
+  // console.log(mintPayloadCopy);
 
   // create ix
   const ix = new TransactionInstruction({
@@ -93,5 +137,5 @@ export const mintKV = async (
     preflightCommitment: 'singleGossip',
   });
 
-  console.log(txSig);
+  return txSig;
 };

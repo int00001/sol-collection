@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node -r tsconfig-paths/register build/index.js",
+    "build": "tsc -p tsconfig.json",
     "gpa": "ts-node -r tsconfig-paths/register build/program-accounts.js",
-    "build": "tsc -p tsconfig.json"
+    "sd": "ts-node -r tsconfig-paths/register build/serialize/run.js"
   },
   "author": "int",
   "license": "LicenseRef-LICENSE",
