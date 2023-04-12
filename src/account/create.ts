@@ -1,16 +1,18 @@
 import {
-  Connection,
   Keypair,
-  sendAndConfirmTransaction,
-  SystemProgram,
+  PublicKey,
+  Connection,
   Transaction,
+  SystemProgram,
+  sendAndConfirmTransaction,
 } from '@solana/web3.js';
 
 export const createAccount = async (
   connection: Connection,
   fromPubkey: Keypair,
   newAccountPubkey: Keypair,
-  space: number
+  space: number,
+  programId: PublicKey
 ) => {
   const rentExemptionAmount =
     await connection.getMinimumBalanceForRentExemption(space);
@@ -20,7 +22,7 @@ export const createAccount = async (
     newAccountPubkey: newAccountPubkey.publicKey,
     lamports: rentExemptionAmount,
     space,
-    programId: SystemProgram.programId,
+    programId,
   };
 
   const createAccountTransaction = new Transaction().add(
