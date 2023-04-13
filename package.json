@@ -9,7 +9,8 @@
     "gpa": "ts-node -r tsconfig-paths/register build/program-accounts.js",
     "sd": "ts-node -r tsconfig-paths/register build/serialize/run.js",
     "rtx": "ts-node -r tsconfig-paths/register build/transactions/rebroadcast.js",
-    "rpcv": "ts-node -r tsconfig-paths/register build/transactions/versions-rpc.js"
+    "rpcv": "ts-node -r tsconfig-paths/register build/transactions/versions-rpc.js",
+    "txv": "ts-node -r tsconfig-paths/register build/transactions/versions-tx.js"
   },
   "author": "int",
   "license": "LicenseRef-LICENSE",
