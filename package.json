@@ -12,7 +12,8 @@
     "rpcv": "ts-node -r tsconfig-paths/register build/transactions/versions-rpc.js",
     "txv": "ts-node -r tsconfig-paths/register build/transactions/versions-tx.js",
     "lut:create": "ts-node -r tsconfig-paths/register build/transactions/lut-create.js",
-    "lut:extend": "ts-node -r tsconfig-paths/register build/transactions/lut-extend.js"
+    "lut:extend": "ts-node -r tsconfig-paths/register build/transactions/lut-extend.js",
+    "lut:fetch": "ts-node -r tsconfig-paths/register build/transactions/lut-fetch.js"
   },
   "author": "int",
   "license": "LicenseRef-LICENSE",
