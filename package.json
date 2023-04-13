@@ -15,6 +15,7 @@
     "lut:extend": "ts-node -r tsconfig-paths/register build/transactions/lut-extend.js",
     "lut:fetch": "ts-node -r tsconfig-paths/register build/transactions/lut-fetch.js",
     "lut:tx": "ts-node -r tsconfig-paths/register build/transactions/lut-use-tx.js",
+    "memo": "ts-node -r tsconfig-paths/register build/transactions/memo.js",
     "sm": "ts-node -r tsconfig-paths/register build/keypair/sign-message.js"
   },
   "author": "int",
