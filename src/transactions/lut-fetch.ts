@@ -1,5 +1,4 @@
 import { Connection, PublicKey } from '@solana/web3.js';
-
 import * as dotenv from 'dotenv';
 
 dotenv.config();
