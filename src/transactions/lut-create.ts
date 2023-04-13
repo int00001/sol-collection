@@ -13,9 +13,6 @@ dotenv.config();
 
 const createLUT = async (connection: Connection, wallet: Keypair) => {
   const slot = await connection.getSlot();
-  const blockhash = await connection
-    .getLatestBlockhash()
-    .then((res) => res.blockhash);
 
   // create LUT ix, pubkey
   const [lookupTableIx, lookupTableAddress] =
@@ -24,6 +21,10 @@ const createLUT = async (connection: Connection, wallet: Keypair) => {
       payer: wallet.publicKey,
       recentSlot: slot,
     });
+
+  const blockhash = await connection
+    .getLatestBlockhash()
+    .then((res) => res.blockhash);
 
   // send ix, create LUT on-chain
   const messageV0 = new TransactionMessage({
