@@ -10,7 +10,9 @@
     "sd": "ts-node -r tsconfig-paths/register build/serialize/run.js",
     "rtx": "ts-node -r tsconfig-paths/register build/transactions/rebroadcast.js",
     "rpcv": "ts-node -r tsconfig-paths/register build/transactions/versions-rpc.js",
-    "txv": "ts-node -r tsconfig-paths/register build/transactions/versions-tx.js"
+    "txv": "ts-node -r tsconfig-paths/register build/transactions/versions-tx.js",
+    "lut:create": "ts-node -r tsconfig-paths/register build/transactions/lut-create.js",
+    "lut:extend": "ts-node -r tsconfig-paths/register build/transactions/lut-extend.js"
   },
   "author": "int",
   "license": "LicenseRef-LICENSE",
