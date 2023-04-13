@@ -14,7 +14,8 @@
     "lut:create": "ts-node -r tsconfig-paths/register build/transactions/lut-create.js",
     "lut:extend": "ts-node -r tsconfig-paths/register build/transactions/lut-extend.js",
     "lut:fetch": "ts-node -r tsconfig-paths/register build/transactions/lut-fetch.js",
-    "lut:tx": "ts-node -r tsconfig-paths/register build/transactions/lut-use-tx.js"
+    "lut:tx": "ts-node -r tsconfig-paths/register build/transactions/lut-use-tx.js",
+    "sm": "ts-node -r tsconfig-paths/register build/keypair/sign-message.js"
   },
   "author": "int",
   "license": "LicenseRef-LICENSE",
@@ -36,6 +37,7 @@
     "borsh": "^0.7.0",
     "dotenv": "^16.0.3",
     "ts-node": "^10.7.0",
-    "tsconfig-paths": "^3.14.1"
+    "tsconfig-paths": "^3.14.1",
+    "tweetnacl": "^1.0.3"
   }
 }
