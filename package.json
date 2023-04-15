@@ -7,6 +7,7 @@
     "start": "ts-node -r tsconfig-paths/register build/index.js",
     "build": "tsc -p tsconfig.json",
     "gpa": "ts-node -r tsconfig-paths/register build/account/program-accounts.js",
+    "info": "ts-node -r tsconfig-paths/register build/account/info.js",
     "sd": "ts-node -r tsconfig-paths/register build/serialize/run.js",
     "rtx": "ts-node -r tsconfig-paths/register build/transactions/rebroadcast.js",
     "rpcv": "ts-node -r tsconfig-paths/register build/transactions/versions-rpc.js",
