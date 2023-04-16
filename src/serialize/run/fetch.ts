@@ -12,31 +12,22 @@ const main = async () => {
   const programId = new PublicKey(process.env.CLI_TEMPLATE_PROGRAM_ID!);
   const wallet = loadWallet();
 
-  // create account owned by program
+  // create account to mint to
   const ACCOUT_STATE_SPACE = 1024;
   const programOwnedAccount = Keypair.generate();
-  const createAccSig = await createAccount(
+  await createAccount(
     connection,
     wallet,
     programOwnedAccount,
     ACCOUT_STATE_SPACE,
     programId
   );
-  console.log(createAccSig);
+  await initAcc(connection, programId, programOwnedAccount.publicKey, wallet);
 
-  // init account to store data
-  const initAccSig = await initAcc(
-    connection,
-    programId,
-    programOwnedAccount.publicKey,
-    wallet
-  );
-  console.log(initAccSig);
-
-  // mint KV pair to chain
-  const key = 'test';
-  const value = '1';
-  const mintSig = await mintKV(
+  // mint KV pair
+  const key = 'key-two';
+  const value = '555';
+  await mintKV(
     connection,
     programId,
     programOwnedAccount.publicKey,
@@ -44,7 +35,6 @@ const main = async () => {
     key,
     value
   );
-  console.log(mintSig);
 
   // deserialize from chain
   const accData = await getAccountData(

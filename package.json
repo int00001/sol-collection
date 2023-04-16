@@ -8,7 +8,10 @@
     "build": "tsc -p tsconfig.json",
     "gpa": "ts-node -r tsconfig-paths/register build/account/program-accounts.js",
     "info": "ts-node -r tsconfig-paths/register build/account/info.js",
-    "sd": "ts-node -r tsconfig-paths/register build/serialize/run.js",
+    "serde:init": "ts-node -r tsconfig-paths/register build/serialize/run/init.js",
+    "serde:mint": "ts-node -r tsconfig-paths/register build/serialize/run/mint.js",
+    "serde:fetch": "ts-node -r tsconfig-paths/register build/serialize/run/fetch.js",
+    "serde:transfer": "ts-node -r tsconfig-paths/register build/serialize/run/transfer.js",
     "rtx": "ts-node -r tsconfig-paths/register build/transactions/rebroadcast.js",
     "rpcv": "ts-node -r tsconfig-paths/register build/transactions/versions-rpc.js",
     "txv": "ts-node -r tsconfig-paths/register build/transactions/versions-tx.js",
@@ -35,6 +38,7 @@
     "typescript": "^4.9.3"
   },
   "dependencies": {
+    "@coral-xyz/anchor": "^0.27.0",
     "@solana/spl-token": "^0.3.7",
     "@solana/web3.js": "^1.75.0",
     "borsh": "^0.7.0",

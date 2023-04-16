@@ -14,7 +14,9 @@ import {
 } from '@solana/web3.js';
 
 /**
- * Can be used to serialize payloads for custom programs
+ * Borsh method of serialization.
+ * Different than @project-serum/anchor
+ * Though same as @coral-xyz/anchor
  */
 
 // class that takes passed in props and adds them to an object
@@ -27,10 +29,16 @@ class Assignable {
   }
 }
 
-// ix payload
 class Payload extends Assignable { }
 
-// borsh schema describing the payload
+enum InstructionVariant {
+  InitializeAccount = 0,
+  MintKeypair,
+  TransferKeypair,
+  BurnKeypair,
+}
+
+// initialize_account
 const initPayloadSchema = new Map([
   [
     Payload,
@@ -40,6 +48,8 @@ const initPayloadSchema = new Map([
     },
   ],
 ]);
+
+// mint_keypair_to_account
 const mintPayloadSchema = new Map([
   [
     Payload,
@@ -54,12 +64,55 @@ const mintPayloadSchema = new Map([
   ],
 ]);
 
-enum InstructionVariant {
-  InitializeAccount = 0,
-  MintKeypair,
-  TransferKeypair,
-  BurnKeypair,
-}
+// transfer_keypair_to_account
+const transferKeypairSchema = new Map([
+  [
+    Payload,
+    {
+      kind: 'struct',
+      fields: [
+        ['id', 'u8'],
+        ['key', 'string'],
+      ],
+    },
+  ],
+]);
+
+export const transferKeypair = async (
+  connection: Connection,
+  programId: PublicKey,
+  fromAccount: PublicKey,
+  toAccount: PublicKey,
+  key: string,
+  wallet: Keypair
+) => {
+  const transferKeypairPayload = new Payload({
+    id: InstructionVariant.TransferKeypair,
+    key,
+  });
+  const ixData = Buffer.from(
+    serialize(transferKeypairSchema, transferKeypairPayload)
+  );
+
+  const ix = new TransactionInstruction({
+    data: ixData,
+    keys: [
+      { pubkey: fromAccount, isSigner: false, isWritable: true },
+      { pubkey: toAccount, isSigner: false, isWritable: true },
+      { pubkey: wallet.publicKey, isSigner: true, isWritable: false },
+    ],
+    programId,
+  });
+
+  const tx = new Transaction().add(ix);
+
+  const sig = await sendAndConfirmTransaction(connection, tx, [wallet], {
+    commitment: 'singleGossip',
+    preflightCommitment: 'singleGossip',
+  });
+
+  return sig;
+};
 
 export const initAcc = async (
   connection: Connection,
@@ -67,16 +120,18 @@ export const initAcc = async (
   account: PublicKey,
   wallet: Keypair
 ) => {
+  // construct payload.
+  // to be serialized as payload schema
   const init = new Payload({
     id: InstructionVariant.InitializeAccount,
   });
 
   // serialize
-  const initSerBuf = Buffer.from(serialize(initPayloadSchema, init));
+  const ixData = Buffer.from(serialize(initPayloadSchema, init));
 
   // ix
   const ix = new TransactionInstruction({
-    data: initSerBuf,
+    data: ixData,
     keys: [
       { pubkey: account, isSigner: false, isWritable: true },
       { pubkey: wallet.publicKey, isSigner: false, isWritable: false },
@@ -113,14 +168,14 @@ export const mintKV = async (
   });
 
   // serialize payload
-  const mintSerBuf = Buffer.from(serialize(mintPayloadSchema, mint));
+  const ixData = Buffer.from(serialize(mintPayloadSchema, mint));
   // console.log(mintSerBuf);
   // const mintPayloadCopy = deserialize(mintPayloadSchema, Payload, mintSerBuf);
   // console.log(mintPayloadCopy);
 
   // create ix
   const ix = new TransactionInstruction({
-    data: mintSerBuf,
+    data: ixData,
     keys: [
       { pubkey: account, isSigner: false, isWritable: true },
       { pubkey: wallet.publicKey, isSigner: false, isWritable: false },
