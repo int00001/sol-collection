@@ -22,12 +22,13 @@
     "memo": "ts-node -r tsconfig-paths/register build/transactions/memo.js",
     "prio": "ts-node -r tsconfig-paths/register build/transactions/priority.js",
     "sm": "ts-node -r tsconfig-paths/register build/keypair/sign-message.js",
-    "spl:init-mint": "ts-node -r tsconfig-paths/register build/token/init-mint.js",
-    "spl:acc": "ts-node -r tsconfig-paths/register build/token/account.js",
-    "spl:assoc-acc": "ts-node -r tsconfig-paths/register build/token/associated-account.js",
-    "spl:mint": "ts-node -r tsconfig-paths/register build/token/mint.js",
-    "spl:transfer": "ts-node -r tsconfig-paths/register build/token/transfer.js",
-    "spl:burn": "ts-node -r tsconfig-paths/register build/token/burn.js"
+    "token:init-mint": "ts-node -r tsconfig-paths/register build/token/init-mint.js",
+    "token:acc": "ts-node -r tsconfig-paths/register build/token/account.js",
+    "token:assoc-acc": "ts-node -r tsconfig-paths/register build/token/associated-account.js",
+    "token:mint": "ts-node -r tsconfig-paths/register build/token/mint.js",
+    "token:transfer": "ts-node -r tsconfig-paths/register build/token/transfer.js",
+    "token:burn": "ts-node -r tsconfig-paths/register build/token/burn.js",
+    "token-swap:create": "ts-node -r tsconfig-paths/register build/token-swap/create-swap-pool.js"
   },
   "author": "int",
   "license": "LicenseRef-LICENSE",
@@ -46,6 +47,7 @@
   "dependencies": {
     "@coral-xyz/anchor": "^0.27.0",
     "@solana/spl-token": "^0.3.7",
+    "@solana/spl-token-swap": "^0.2.1",
     "@solana/web3.js": "^1.75.0",
     "borsh": "^0.7.0",
     "dotenv": "^16.0.3",
