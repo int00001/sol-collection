@@ -24,7 +24,8 @@
     "sm": "ts-node -r tsconfig-paths/register build/keypair/sign-message.js",
     "spl:init-mint": "ts-node -r tsconfig-paths/register build/token/init-mint.js",
     "spl:acc": "ts-node -r tsconfig-paths/register build/token/account.js",
-    "spl:assoc-acc": "ts-node -r tsconfig-paths/register build/token/associated-account.js"
+    "spl:assoc-acc": "ts-node -r tsconfig-paths/register build/token/associated-account.js",
+    "spl:mint": "ts-node -r tsconfig-paths/register build/token/mint.js"
   },
   "author": "int",
   "license": "LicenseRef-LICENSE",
