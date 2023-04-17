@@ -26,7 +26,8 @@
     "spl:acc": "ts-node -r tsconfig-paths/register build/token/account.js",
     "spl:assoc-acc": "ts-node -r tsconfig-paths/register build/token/associated-account.js",
     "spl:mint": "ts-node -r tsconfig-paths/register build/token/mint.js",
-    "spl:transfer": "ts-node -r tsconfig-paths/register build/token/transfer.js"
+    "spl:transfer": "ts-node -r tsconfig-paths/register build/token/transfer.js",
+    "spl:burn": "ts-node -r tsconfig-paths/register build/token/burn.js"
   },
   "author": "int",
   "license": "LicenseRef-LICENSE",
