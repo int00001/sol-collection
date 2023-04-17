@@ -54,6 +54,8 @@ const main = async () => {
     tokenMint,
   ]);
   console.log(sig);
+
+  console.log(`token: ${tokenMint.publicKey}`);
 };
 
 main();
