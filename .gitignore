@@ -5,3 +5,4 @@ build
 *.txt
 *.log
 *.error
+src/token-swap/pools.json
