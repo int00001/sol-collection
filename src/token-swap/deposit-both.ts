@@ -54,9 +54,6 @@ const main = async () => {
   );
   const poolTokenAmount = 1_000;
 
-  // BUG
-  // npm spl lib is outdated
-  // import the updated lib into project locally
   const depositBothIx = TokenSwap.depositAllTokenTypesInstruction(
     new PublicKey(poolAccounts.tokenSwap), // token swap state account
     new PublicKey(poolAccounts.authority), // pool authority
