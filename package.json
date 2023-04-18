@@ -29,7 +29,8 @@
     "token:transfer": "ts-node -r tsconfig-paths/register build/src/token/transfer.js",
     "token:burn": "ts-node -r tsconfig-paths/register build/src/token/burn.js",
     "token-swap:create": "ts-node -r tsconfig-paths/register build/src/token-swap/create-swap-pool.js",
-    "token-swap:deposit-both": "ts-node -r tsconfig-paths/register build/src/token-swap/deposit-both.js"
+    "token-swap:deposit-both": "ts-node -r tsconfig-paths/register build/src/token-swap/deposit-both.js",
+    "token-swap:swap": "ts-node -r tsconfig-paths/register build/src/token-swap/swap.js"
   },
   "author": "int",
   "license": "LicenseRef-LICENSE",
