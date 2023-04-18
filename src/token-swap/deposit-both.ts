@@ -13,7 +13,7 @@ import {
 import { TokenSwap } from '@libs/spl-token-swap';
 
 import { loadWallet } from 'keypair';
-import poolData from './pools.json';
+import { getPoolByTokens } from 'utils';
 
 dotenv.config();
 
@@ -41,11 +41,7 @@ const main = async () => {
     new PublicKey(tokenB),
     wallet.publicKey
   );
-  const poolAccounts = poolData.pools.find(
-    (pool) =>
-      (pool.tokenAMint === tokenA && pool.tokenBMint === tokenB) ||
-      (pool.tokenAMint === tokenB && pool.tokenBMint === tokenA)
-  )!;
+  const poolAccounts = getPoolByTokens(tokenA, tokenB)!;
   const userPoolToken = await getOrCreateAssociatedTokenAccount(
     connection,
     wallet,
