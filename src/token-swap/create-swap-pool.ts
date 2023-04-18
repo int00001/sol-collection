@@ -7,7 +7,7 @@ import {
   SystemProgram,
   sendAndConfirmTransaction,
 } from '@solana/web3.js';
-import { CurveType, TokenSwap, TokenSwapLayout } from '@solana/spl-token-swap';
+import { CurveType, TokenSwap, TokenSwapLayout } from '@libs/spl-token-swap';
 import * as dotenv from 'dotenv';
 
 import { loadWallet } from 'keypair';

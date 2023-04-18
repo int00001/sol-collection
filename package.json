@@ -48,7 +48,6 @@
   "dependencies": {
     "@coral-xyz/anchor": "^0.27.0",
     "@solana/spl-token": "^0.3.7",
-    "@solana/spl-token-swap": "^0.2.1",
     "@solana/web3.js": "^1.75.0",
     "borsh": "^0.7.0",
     "dotenv": "^16.0.3",
