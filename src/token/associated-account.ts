@@ -27,6 +27,7 @@ const main = async () => {
     tokenMint,
     wallet.publicKey
   );
+  console.log(`assosciated token address ${associatedTokenAddress}`);
 
   const createTokenAccountIx = createAssociatedTokenAccountInstruction(
     wallet.publicKey,
