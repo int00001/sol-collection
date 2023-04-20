@@ -8,6 +8,7 @@
     "build": "tsc -p tsconfig.json",
     "gpa": "ts-node -r tsconfig-paths/register build/src/account/program-accounts.js",
     "info": "ts-node -r tsconfig-paths/register build/src/account/info.js",
+    "airdrop": "ts-node -r tsconfig-paths/register build/src/utils/airdrop.js",
     "serde:init": "ts-node -r tsconfig-paths/register build/src/serialize/run/init.js",
     "serde:mint": "ts-node -r tsconfig-paths/register build/src/serialize/run/mint.js",
     "serde:fetch": "ts-node -r tsconfig-paths/register build/src/serialize/run/fetch.js",
